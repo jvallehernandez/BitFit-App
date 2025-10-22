@@ -1,47 +1,66 @@
-# Android Project 5 - *BitFit-Part1*
+# Android Project 6 - **BitFit-App**
 
 Submitted by: **Jose Valle**
 
-**BitFit-Part1** is a health metrics app that allows users to track their daily food intake and calories. It provides a simple UI to add new foods with their calorie values, stores them locally using Room (SQLite), and displays them in a scrollable list. Entries are persistent across app restarts.
+**BitFit-App** is a health metrics app that allows users to track their daily food intake and automatically view calorie statistics. It extends the original BitFit app by adding multi-screen navigation with fragments, a dashboard for calorie summaries, and persistent storage using Room.
 
-Time spent: **8.5** hours spent in total
+Time spent: **4.5+ hours** spent in total
+
+---
 
 ## Required Features
 
 The following **required** functionality is completed:
 
-- [x] **At least one health metric is tracked (based on user input)**
-    - Chosen metric(s): `Food / Calories`
-- [x] **There is a "create entry" UI that prompts users to make their daily entry**
-- [x] **New entries are saved in a database and then updated in the RecyclerView**
-- [x] **On application restart, previously entered entries are preserved (i.e., are *persistent*)**
+- [x] **Uses at least 2 Fragments** (`LogFragment` and `DashboardFragment`)
+- [x] **Creates a dashboard fragment where users can see a summary of their entered data**
+- [x] **Uses BottomNavigationView to move between fragments**
+- [x] **Data is saved in a Room database and persists after app restarts**
+- [x] **Implements live database observation for instant UI updates**
+
+---
+
+## Optional Features
 
 The following **optional** features are implemented:
 
-- [ ] **Create a UI for tracking averages and trends in metrics**
-- [ ] **Improve and customize the user interface through styling and coloring**
-- [ ] **Implement orientation responsivity**
-- [ ] **Add a daily photo feature**
+- [x] **Improved UI design with Material color theming and icons**
+- [x] **Added input validation (requires name + numeric calories)**
+- [x] **“Clear Data” button to delete all entries and refresh dashboard**
+- [ ] **Graph visualization for calorie trends (planned with MPAndroidChart)**
+- [ ] **Daily notifications for entry reminders**
+
+---
+
+## Additional Features
 
 The following **additional** features are implemented:
 
-- [ ] Added simple input validation (requires name + numeric calories)
-- [ ] Entries stored with timestamps for future trend features
+- [x] **Uses ViewBinding and LifecycleScope for safer UI updates**
+- [x] **Real-time updates across fragments via LiveData observation**
+- [x] **Consistent navigation behavior using Android Navigation Component**
+
+---
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='bitFitWalkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='bitfitapp.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [Kap](https://getkap.co/)
+GIF created with [Kap](https://getkap.co/) for macOS
+
+---
 
 ## Notes
 
 The main challenges were:
-- Configuring Room database with proper package names to avoid unresolved reference errors.
-- Dealing with `android:exported` requirement in Android 12+.
-- Ensuring `submitList` worked correctly with Kotlin (removing named argument).
+- Configuring the Room database correctly to resolve missing reference errors
+- Managing navigation between fragments using BottomNavigationView
+- Handling Kotlin coroutine scopes for live data observation
+- Ensuring UI consistency between fragments after clearing database data
+
+---
 
 ## License
 

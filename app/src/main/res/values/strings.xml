@@ -1,3 +1,5 @@
+<!-- res/values/strings.xml -->
 <resources>
-    <string name="app_name">Bitfit-App</string>
+    <string name="app_name">BitFit-Part2</string>
+    <string name="add_new_food">ADD NEW FOOD</string>
 </resources>

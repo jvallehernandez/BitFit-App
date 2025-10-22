@@ -1,38 +1,35 @@
 package com.example.bitfit_app
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bitfit_app.databinding.ActivityMainBinding
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var db: AppDatabase
-    private lateinit var adapter: FoodAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = AppDatabase.get(this)
-        adapter = FoodAdapter()
+        setSupportActionBar(binding.toolbar)
 
-        binding.rvFoods.layoutManager = LinearLayoutManager(this)
-        binding.rvFoods.adapter = adapter
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.nav_host) as NavHostFragment
+        val navController = navHost.navController
 
-        binding.btnAdd.setOnClickListener {
-            startActivity(Intent(this, com.example.bitfit_app.CreateActivityEntry::class.java))
-        }
+        val appBarConfig = AppBarConfiguration(setOf(R.id.logFragment, R.id.dashboardFragment))
+        setupActionBarWithNavController(navController, appBarConfig)
+        binding.bottomNav.setupWithNavController(navController)
+    }
 
-        lifecycleScope.launch {
-            db.foodDao().observeAll().collectLatest { entries ->
-                adapter.submitList(entries)   // no named argument
-            }
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController =
+            (supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment).navController
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }
