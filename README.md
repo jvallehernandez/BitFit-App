@@ -4,7 +4,7 @@ Submitted by: **Jose Valle**
 
 **BitFit-App** is a health metrics app that allows users to track their daily food intake and automatically view calorie statistics. It extends the original BitFit app by adding multi-screen navigation with fragments, a dashboard for calorie summaries, and persistent storage using Room.
 
-Time spent: **4.5+ hours** spent in total
+Time spent: **8.5+ hours** spent in total
 
 ---
 
